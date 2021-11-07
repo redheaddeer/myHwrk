@@ -37,16 +37,15 @@ namespace myHomework
         }
 
         private void calculation(object sender, EventArgs e) {
-            try
-            {
+            try {
                 for (int i = 0; i <= dataGridView1.Rows.Count; i++)
-                    if (Int32.Parse(dataGridView1[3, i].Value.ToString()) >= 5) // NullReferenceException
+                    if (Int32.Parse(dataGridView1[3, i].Value.ToString()) >= 5) 
                         if (dataGridView1[2, i].Value.ToString().Equals("полупроводник"))
                             richTextBox1.Text = richTextBox1.Text + dataGridView1[0, i].Value.ToString() + " " + dataGridView1[2, i].Value.ToString();
-            } catch (ArgumentNullException) {
-                MessageBox.Show("ArgumentNullException: хотя бы один из переданных аргументов имеет значение null");
             } catch (NullReferenceException) {
                 MessageBox.Show("NullReferenceException: хотя бы один из переданных аргументов имеет значение null");
+            } catch (ArgumentNullException) {
+                MessageBox.Show("ArgumentNullException: хотя бы один из переданных аргументов имеет значение null");
             } catch (FormatException) {
                 MessageBox.Show("FormatException: преобразование строки в другой тип данных невозможно, так как строка не соответствует требуемому шаблону"); 
             } catch (OverflowException) {
