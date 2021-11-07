@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 using System.Windows.Forms;
 
 namespace myHomework
@@ -43,7 +37,26 @@ namespace myHomework
         }
 
         private void calculation(object sender, EventArgs e) {
-            //new Task522.Task();
-        } 
+            try
+            {
+                for (int i = 0; i <= dataGridView1.Rows.Count; i++)
+                    if (Int32.Parse(dataGridView1[3, i].Value.ToString()) >= 5) // NullReferenceException
+                        if (dataGridView1[2, i].Value.ToString().Equals("полупроводник"))
+                            richTextBox1.Text = richTextBox1.Text + dataGridView1[0, i].Value.ToString() + " " + dataGridView1[2, i].Value.ToString();
+            } catch (ArgumentNullException) {
+                MessageBox.Show("ArgumentNullException: хотя бы один из переданных аргументов имеет значение null");
+            } catch (NullReferenceException) {
+                MessageBox.Show("NullReferenceException: хотя бы один из переданных аргументов имеет значение null");
+            } catch (FormatException) {
+                MessageBox.Show("FormatException: преобразование строки в другой тип данных невозможно, так как строка не соответствует требуемому шаблону"); 
+            } catch (OverflowException) {
+                MessageBox.Show("OverflowException: арифметическая операция выдает результат, который находится за пределами диапазона типа данных, возвращаемого операцией");
+            }
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

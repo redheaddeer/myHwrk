@@ -23,6 +23,9 @@ namespace myHomework
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Homework));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.enter = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -30,12 +33,12 @@ namespace myHomework
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.gravity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.type = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.count = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.button1 = new System.Windows.Forms.Button();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.gravity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.type = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.count = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -147,26 +150,7 @@ namespace myHomework
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(450, 363);
             this.dataGridView1.TabIndex = 2;
-            // 
-            // name
-            // 
-            this.name.HeaderText = "Вещество";
-            this.name.Name = "name";
-            // 
-            // gravity
-            // 
-            this.gravity.HeaderText = "Удельный вес";
-            this.gravity.Name = "gravity";
-            // 
-            // type
-            // 
-            this.type.HeaderText = "Тип";
-            this.type.Name = "type";
-            // 
-            // count
-            // 
-            this.count.HeaderText = "Количество";
-            this.count.Name = "count";
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // button1
             // 
@@ -179,6 +163,7 @@ namespace myHomework
             this.button1.TabIndex = 3;
             this.button1.Text = "Посчитать";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.calculation);
             // 
             // richTextBox1
             // 
@@ -190,6 +175,39 @@ namespace myHomework
             this.richTextBox1.Size = new System.Drawing.Size(287, 323);
             this.richTextBox1.TabIndex = 4;
             this.richTextBox1.Text = "";
+            // 
+            // name
+            // 
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.NullValue = "имя";
+            this.name.DefaultCellStyle = dataGridViewCellStyle1;
+            this.name.HeaderText = "Вещество";
+            this.name.Name = "name";
+            // 
+            // gravity
+            // 
+            dataGridViewCellStyle2.NullValue = "0";
+            this.gravity.DefaultCellStyle = dataGridViewCellStyle2;
+            this.gravity.HeaderText = "Удельный вес";
+            this.gravity.Name = "gravity";
+            // 
+            // type
+            // 
+            this.type.HeaderText = "Тип";
+            this.type.Items.AddRange(new object[] {
+            "проводник",
+            "полупроводник",
+            "изолятор"});
+            this.type.Name = "type";
+            this.type.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.type.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // count
+            // 
+            dataGridViewCellStyle3.NullValue = "0";
+            this.count.DefaultCellStyle = dataGridViewCellStyle3;
+            this.count.HeaderText = "Количество";
+            this.count.Name = "count";
             // 
             // Homework
             // 
@@ -234,12 +252,12 @@ namespace myHomework
         private TextBox textBox1;
         private TextBox textBox2;
         private DataGridView dataGridView1;
-        private DataGridViewTextBoxColumn name;
-        private DataGridViewTextBoxColumn gravity;
-        private DataGridViewTextBoxColumn type;
-        private DataGridViewTextBoxColumn count;
         private Button button1;
         private RichTextBox richTextBox1;
+        private DataGridViewTextBoxColumn name;
+        private DataGridViewTextBoxColumn gravity;
+        private DataGridViewComboBoxColumn type;
+        private DataGridViewTextBoxColumn count;
     }
 }
 
