@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using System.Windows.Forms;
 
 namespace myHomework
@@ -37,20 +36,11 @@ namespace myHomework
         }
 
         private void calculation(object sender, EventArgs e) {
-            try {
-                for (int i = 0; i <= dataGridView1.Rows.Count; i++)
-                    if (Int32.Parse(dataGridView1[3, i].Value.ToString()) >= 5) 
-                        if (dataGridView1[2, i].Value.ToString().Equals("полупроводник"))
-                            richTextBox1.Text = richTextBox1.Text + dataGridView1[0, i].Value.ToString() + " " + dataGridView1[2, i].Value.ToString();
-            } catch (NullReferenceException) {
-                MessageBox.Show("NullReferenceException: хотя бы один из переданных аргументов имеет значение null");
-            } catch (ArgumentNullException) {
-                MessageBox.Show("ArgumentNullException: хотя бы один из переданных аргументов имеет значение null");
-            } catch (FormatException) {
-                MessageBox.Show("FormatException: преобразование строки в другой тип данных невозможно, так как строка не соответствует требуемому шаблону"); 
-            } catch (OverflowException) {
-                MessageBox.Show("OverflowException: арифметическая операция выдает результат, который находится за пределами диапазона типа данных, возвращаемого операцией");
-            }
+            for (int i = 0; i <= dataGridView1.Rows.Count; i++)
+                if (Int32.Parse(dataGridView1[3, i].Value.ToString()) >= 5) 
+                    if (dataGridView1[2, i].Value.ToString().Equals("полупроводник"))
+                       richTextBox1.Text = richTextBox1.Text + dataGridView1[0, i].Value.ToString() + " " + dataGridView1[2, i].Value.ToString();
+            
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
